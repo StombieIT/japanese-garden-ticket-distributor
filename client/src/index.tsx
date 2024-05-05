@@ -8,7 +8,7 @@ const root = createRoot(
 );
 
 root.render(
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.VITE_ROUTER_BASE_URL}>
         <App />
     </BrowserRouter>
 );
