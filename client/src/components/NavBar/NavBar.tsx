@@ -7,10 +7,11 @@ import {INavLinkRenderProps} from "@/models/react-router-dom";
 
 import classes from "./NavBar.module.styl";
 
+const linkClassName = ({ isActive }: INavLinkRenderProps) => cn(classes["link"], {
+    [classes["__current"]]: isActive
+});
+
 export const NavBar: FC = () => {
-    const linkClassName = ({ isActive }: INavLinkRenderProps) => cn(classes["link"], {
-        [classes["__current"]]: isActive
-    });
 
     return (
         <nav className={classes["navbar"]}>
