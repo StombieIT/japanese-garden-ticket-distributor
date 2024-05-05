@@ -9,10 +9,15 @@ interface IAuthenticateUserParameters {
     password: string;
 }
 
-export const authenticateUser = createEffect(async (authParameters: IAuthenticateUserParameters) => {
-    const result = await api.get<IAuthenticateUserParameters, AxiosResponse<IAuthUser>>("/auth.php");
+const AUTH_URL = "/auth.php"
+
+export const authenticateUser = createEffect(async (authParameters?: IAuthenticateUserParameters) => {
+    const request = authParameters
+        ? api.postForm<IAuthenticateUserParameters, AxiosResponse<IAuthUser>>(AUTH_URL, authParameters)
+        : api.get<IAuthUser>(AUTH_URL);
+    const result = await request;
     return result.data;
 });
 
 export const $authUserStore = createStore<IAuthUser | null>(null)
-    .on(authenticateUser.done, (state, { result: authUser }) => authUser);
+    .on(authenticateUser.done, (state, { result: authUser }) => authUser)

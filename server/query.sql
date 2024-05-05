@@ -15,3 +15,13 @@ CREATE TABLE role_permission (
     FOREIGN KEY (permission_id) REFERENCES permission(permission_id),
     PRIMARY KEY (role_id, permission_id)
 );
+
+CREATE TABLE `user` (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(128) NOT NULL UNIQUE,
+    first_name VARCHAR(64) NOT NULL,
+    last_name VARCHAR(64) NOT NULL,
+    middle_name VARCHAR(64) NOT NULL,
+    role_id INT,
+    FOREIGN KEY (role_id) REFERENCES `role`(role_id)
+);

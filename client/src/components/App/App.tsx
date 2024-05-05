@@ -6,16 +6,12 @@ export const App: FC = () => {
     const authData = useUnit($authUserStore);
 
     useEffect(() => {
-        authenticateUser({
-            email: "stombie@yandex.ru",
-            password: "12345678"
-        });
+        authenticateUser();
     }, []);
 
     return (
         <>
             <div>hello world</div>
-            {authData}
         </>
     );
 };
