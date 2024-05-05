@@ -1,5 +1,5 @@
 import {Email} from "./email";
-import {IRole} from "./role";
+import {IAuthRole} from "./role";
 
 export type UserId = number;
 
@@ -12,5 +12,5 @@ export interface IUser {
 }
 
 export interface IAuthUser extends IUser {
-    role: IRole | null;
+    role: IAuthRole | null;
 }

@@ -1,8 +1,8 @@
 import {createEffect, createStore} from "effector";
-import {IAuthUser} from "../models/user";
-import {Email} from "../models/email";
+import {IAuthUser} from "@/models/user";
+import {Email} from "@/models/email";
 import {AxiosResponse} from "axios";
-import {api} from "../utils/api";
+import {api} from "@/utils/api";
 
 interface IAuthenticateUserParameters {
     email: Email;
@@ -20,4 +20,4 @@ export const authenticateUser = createEffect(async (authParameters?: IAuthentica
 });
 
 export const $authUserStore = createStore<IAuthUser | null>(null)
-    .on(authenticateUser.done, (state, { result: authUser }) => authUser)
+    .on(authenticateUser.done, (state, { result: authUser }) => authUser);
