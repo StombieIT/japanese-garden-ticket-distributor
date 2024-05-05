@@ -9,7 +9,7 @@ interface IAuthenticateUserParameters {
     password: string;
 }
 
-const AUTH_URL = "/auth.php"
+const AUTH_URL = "/auth.php";
 
 export const authenticateUser = createEffect(async (authParameters?: IAuthenticateUserParameters) => {
     const request = authParameters
