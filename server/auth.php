@@ -23,10 +23,10 @@
 
             if (isset($userRow["role_id"])) {
                 $rolePermissionsSth = $pdo->prepare("SELECT *
-                                                            FROM `role`
-                                                                JOIN role_permission USING(role_id)
-                                                                JOIN permission USING(permission_id)
-                                                            WHERE role_id = :role_id");
+                                                        FROM `role`
+                                                            JOIN role_permission USING(role_id)
+                                                            JOIN permission USING(permission_id)
+                                                        WHERE role_id = :role_id");
 
                 $rolePermissionsSth->execute([':role_id' => $userRow["role_id"]]);
 
@@ -58,6 +58,7 @@
             $authUser = $_SESSION["authUser"];
         } else if (isset($_COOKIE["email"]) && isset($_COOKIE["password"])) {
             $authUser = getAuthUser($_COOKIE["email"], $_COOKIE["password"]);
+            $_SESSION["authUser"] = $authUser;
         }
 
         if (!is_null($authUser)) {
