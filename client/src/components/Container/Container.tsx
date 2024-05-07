@@ -3,12 +3,23 @@ import {FC, HTMLAttributes, PropsWithChildren} from "react";
 import classes from "./Container.module.styl";
 import cn from "classnames";
 
-export interface IContainerProps extends PropsWithChildren, Pick<HTMLAttributes<HTMLDivElement>, "className"> {}
+export const enum ContainerView {
+    BASE = "div",
+    MAIN = "main"
+}
 
-export const Container: FC<IContainerProps> = ({children, className}) => {
+export interface IContainerProps extends PropsWithChildren, Pick<HTMLAttributes<HTMLDivElement>, "className"> {
+    view?: ContainerView
+}
+
+export const Container: FC<IContainerProps> = ({
+    view: View = ContainerView.BASE,
+    children,
+    className
+}) => {
     return (
-        <div className={cn(classes["container"], className)}>
+        <View className={cn(classes["container"], className)}>
             {children}
-        </div>
+        </View>
     )
 };

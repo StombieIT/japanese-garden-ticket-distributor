@@ -1,37 +1,54 @@
 import {FC} from "react";
-import cn from "classnames";
 
-import {NavLink} from "react-router-dom";
 import {Auth} from "@/components/Auth/Auth";
-import {INavLinkRenderProps} from "@/models/react-router-dom";
 
-import classes from "./NavBar.module.styl";
+import {Link} from "@tanstack/react-router";
 import {Container} from "@/components/Container/Container";
 
-const linkClassName = ({ isActive }: INavLinkRenderProps) => cn(classes["link"], {
-    [classes["__current"]]: isActive
-});
+import classes from "./NavBar.module.styl";
+import cn from "classnames";
+
+const activeLinkProps = {
+    className: cn(classes["link"], classes["__current"])
+};
+
+const inactiveLinkProps = {
+    className: classes["link"]
+};
 
 export const NavBar: FC = () => {
+
 
     return (
         <Container>
             <nav className={classes["navbar"]}>
-                <NavLink className={classes["main-link"]} to="/">
+                <Link to="/" className={classes["main-link"]}>
                     Парк Краснодар
-                </NavLink>
+                </Link>
                 <div className={classes["links"]}>
                     <Auth requiredPermission="VALIDATE">
-                        <NavLink className={linkClassName} to="/requests">
+                        <Link
+                            to="/requests"
+                            inactiveProps={inactiveLinkProps}
+                            activeProps={activeLinkProps}
+                        >
                             Заявки
-                        </NavLink>
+                        </Link>
                     </Auth>
                     <Auth
-                        fallback={<NavLink to="/sign-in" className={linkClassName}>Войти</NavLink>}
+                        fallback={
+                            <Link to="/sign-in" inactiveProps={inactiveLinkProps} activeProps={activeLinkProps}>
+                                Войти
+                            </Link>
+                        }
                     >
-                        <NavLink className={linkClassName} to="/account">
+                        <Link
+                            to="/account"
+                            inactiveProps={inactiveLinkProps}
+                            activeProps={activeLinkProps}
+                        >
                             Личный кабинет
-                        </NavLink>
+                        </Link>
                     </Auth>
                 </div>
             </nav>

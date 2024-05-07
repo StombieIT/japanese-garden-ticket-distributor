@@ -10,6 +10,7 @@
   "author": "stombieit",
   "license": "ISC",
   "devDependencies": {
+    "@tanstack/router-vite-plugin": "^1.31.18",
     "@types/node": "^20.12.7",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
@@ -18,12 +19,12 @@
     "vite": "^5.2.10"
   },
   "dependencies": {
+    "@tanstack/router-devtools": "^1.31.20",
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "effector": "^23.2.1",
     "effector-react": "^23.2.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.0"
+    "react-dom": "^18.3.1"
   }
 }

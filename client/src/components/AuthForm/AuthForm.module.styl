@@ -1,0 +1,47 @@
+.auth-form-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  width: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  height: fit-content;
+}
+
+.tabs {
+  display: flex;
+  width: 100%;
+}
+
+.tab {
+  flex-grow: 1;
+  text-align: center;
+  text-decoration: none;
+  padding: 15px;
+  color: unset;
+  transition: background-color .3s ease-in-out;
+
+  &:hover {
+    background-color: rgba(255, 242, 27, 0.2);
+  }
+
+  &.__active {
+    background-color: #fff21b;
+  }
+}
+
+.form-wrapper {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}

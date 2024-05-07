@@ -4,7 +4,7 @@ import {Email} from "@/models/email";
 import {AxiosResponse} from "axios";
 import {api} from "@/utils/api";
 
-interface IAuthenticateUserParameters {
+export interface IAuthenticateUserParameters {
     email: Email;
     password: string;
 }
