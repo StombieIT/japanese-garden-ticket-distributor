@@ -1,0 +1,38 @@
+.notification {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 7px;
+  border-radius: 15px;
+  width: 300px;
+  background-color: #fff;
+  border: 2px dashed var(--notification-border-color);
+  border-left: 3px solid var(--notification-border-color);
+  opacity: 0.75;
+  user-select: none;
+  transition: .15s opacity, .15s transform ease-in-out;
+
+  &.__type-info {
+    --notification-border-color: $main-color;
+  }
+
+  &.__type-success {
+    --notification-border-color: $success;
+  }
+
+  &.__type-error {
+    --notification-border-color: $error;
+  }
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+}
+
+.close-wrapper {
+  padding: 5px;
+  vertical-align: center;
+  line-height: 0;
+  cursor: pointer;
+}

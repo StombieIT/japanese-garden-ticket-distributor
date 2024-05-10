@@ -20,4 +20,4 @@ export const authenticateUser = createEffect(async (authParameters?: IAuthentica
 });
 
 export const $authUserStore = createStore<IAuthUser | null>(null)
-    .on(authenticateUser.done, (state, { result: authUser }) => authUser);
+    .on(authenticateUser.doneData, (state, authUser) => authUser);
