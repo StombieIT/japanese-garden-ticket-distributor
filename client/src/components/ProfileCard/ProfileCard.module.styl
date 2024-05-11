@@ -1,0 +1,58 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.avatar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #fff;
+  border: 5px solid $main-color;
+}
+
+.avatar-icon {
+  width: 100px;
+  height: @width;
+  color: #eeeeee;
+}
+
+.info-part {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px $shadow-color;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 65px;
+    background-color: $main-color;
+  }
+}
+
+.profile-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.facts {
+  margin-top: 50px;
+  list-style: none;
+  width: 100%;
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 2px dashed $main-color;
+}
