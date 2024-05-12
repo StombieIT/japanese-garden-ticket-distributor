@@ -17,8 +17,6 @@ const inactiveLinkProps = {
 };
 
 export const NavBar: FC = () => {
-
-
     return (
         <Container>
             <nav className={classes["navbar"]}>
