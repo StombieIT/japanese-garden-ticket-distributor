@@ -1,0 +1,74 @@
+$common-br = 25px;
+
+.ticket {
+  display: flex;
+  margin: 15px;
+}
+
+.code-wrapper {
+  padding: 15px;
+  background-color: $main-color;
+  border-top-left-radius: $common-br;
+  border-bottom-left-radius: @border-top-left-radius;
+}
+
+.header {
+  padding: 15px;
+  background-color: $main-color;
+  border-top-right-radius: $common-br;
+  align-self: flex-start;
+}
+
+.main-part {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.payload {
+  align-self: stretch;
+  width: 100%;
+  flex-grow: 1;
+  border: 3px solid $main-color;
+  border-top-right-radius: $common-br;
+  border-bottom-right-radius: $common-br;
+  display: flex;
+  overflow: hidden;
+}
+
+.data-wrapper {
+  flex-grow: 1;
+}
+
+.data {
+  padding: 15px;
+  display: flex;
+  justify-content space-between;
+  flex-wrap: wrap;
+}
+
+.delete-button {
+  cursor: pointer;
+  border: none;
+  background-color: $main-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 50px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-header {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: $secondary;
+}
+
+.meta-info {
+  padding: 10px;
+  font-style: italic;
+}
