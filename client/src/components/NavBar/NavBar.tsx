@@ -24,6 +24,15 @@ export const NavBar: FC = () => {
                     Парк Краснодар
                 </Link>
                 <div className={classes["links"]}>
+                    <Auth requiredPermission="EDIT">
+                        <Link
+                            to="/users"
+                            inactiveProps={inactiveLinkProps}
+                            activeProps={activeLinkProps}
+                        >
+                            Пользователи
+                        </Link>
+                    </Auth>
                     <Auth
                         fallback={
                             <Link to="/sign-in" inactiveProps={inactiveLinkProps} activeProps={activeLinkProps}>

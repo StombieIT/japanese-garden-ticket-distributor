@@ -4,8 +4,6 @@ import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 import {TanStackRouterVite} from "@tanstack/router-vite-plugin";
 
-console.log(fileURLToPath(new URL("./src/variables.styl", import.meta.url)));
-
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd());
 

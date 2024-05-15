@@ -16,8 +16,8 @@ export const Auth: FC<IAuthProps> = ({ children, fallback, requiredPermission })
 
     if (authUser &&
         (!requiredPermission ||
-        (Array.isArray(requiredPermission) && requiredPermission.every(permission => authUserPermissionNames!.includes(permission))) ||
-        (typeof requiredPermission === "string" && authUserPermissionNames!.includes(requiredPermission)))) {
+        (!!authUserPermissionNames && Array.isArray(requiredPermission) && requiredPermission.every(permission => authUserPermissionNames!.includes(permission))) ||
+        (!!authUserPermissionNames && typeof requiredPermission === "string" && authUserPermissionNames!.includes(requiredPermission)))) {
         return <>{children}</>;
     }
 

@@ -7,6 +7,8 @@ export interface IRole {
     name: string;
 }
 
-export interface IAuthRole extends IRole {
+export interface IRoleExtended {
     permissions: IPermission[];
 }
+
+export interface IAuthRole extends IRoleExtended {}

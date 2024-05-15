@@ -9,7 +9,7 @@
         $userSth = $pdo->prepare("SELECT * FROM `user` WHERE email = :email");
 
         $userSth->execute([':email' => $email]);
-        if (($userRow = $userSth->fetch(PDO::FETCH_ASSOC)) && $userRow["password"] == $_POST["password"]) {
+        if (($userRow = $userSth->fetch(PDO::FETCH_ASSOC)) && $userRow["password"] == $password) {
             $userSth->closeCursor();
 
             $user = [
@@ -53,9 +53,8 @@
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         session_start();
         $authUser = null;
-        if (isset($_SESSION["authUser"])) {
-            $authUser = $_SESSION["authUser"];
-        } else if (isset($_COOKIE["email"]) && isset($_COOKIE["password"])) {
+
+        if (isset($_COOKIE["email"]) && isset($_COOKIE["password"])) {
             $authUser = getAuthUser($_COOKIE["email"], $_COOKIE["password"]);
             $_SESSION["authUser"] = $authUser;
         }

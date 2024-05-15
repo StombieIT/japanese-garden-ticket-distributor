@@ -9,8 +9,6 @@ const parkImagesModules = import.meta.glob("./assets/*.(jpg|png)", { eager: true
 // @ts-ignore
 const parkImagesSrc = Object.entries(parkImagesModules).map(([_, parkImagesModule]) => parkImagesModule.default);
 
-console.log(parkImagesSrc);
-
 export const Content: FC = () => {
     return (
         <main className={classes["content"]}>
