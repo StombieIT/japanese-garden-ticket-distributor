@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PassageImport } from './routes/passage'
 import { Route as AccountImport } from './routes/account'
 import { Route as AuthSignInImport } from './routes/_auth/sign-in'
 import { Route as AuthRegisterImport } from './routes/_auth/register'
@@ -20,6 +21,7 @@ import { Route as AuthRegisterImport } from './routes/_auth/register'
 // Create Virtual Routes
 
 const UsersLazyImport = createFileRoute('/users')()
+const PassagesLazyImport = createFileRoute('/passages')()
 const AuthLazyImport = createFileRoute('/_auth')()
 const IndexLazyImport = createFileRoute('/')()
 
@@ -30,10 +32,20 @@ const UsersLazyRoute = UsersLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/users.lazy').then((d) => d.Route))
 
+const PassagesLazyRoute = PassagesLazyImport.update({
+  path: '/passages',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/passages.lazy').then((d) => d.Route))
+
 const AuthLazyRoute = AuthLazyImport.update({
   id: '/_auth',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/_auth.lazy').then((d) => d.Route))
+
+const PassageRoute = PassageImport.update({
+  path: '/passage',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AccountRoute = AccountImport.update({
   path: '/account',
@@ -67,8 +79,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountImport
       parentRoute: typeof rootRoute
     }
+    '/passage': {
+      preLoaderRoute: typeof PassageImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth': {
       preLoaderRoute: typeof AuthLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/passages': {
+      preLoaderRoute: typeof PassagesLazyImport
       parentRoute: typeof rootRoute
     }
     '/users': {
@@ -91,7 +111,9 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   AccountRoute,
+  PassageRoute,
   AuthLazyRoute.addChildren([AuthRegisterRoute, AuthSignInRoute]),
+  PassagesLazyRoute,
   UsersLazyRoute,
 ])
 

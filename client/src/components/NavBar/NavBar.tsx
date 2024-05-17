@@ -24,6 +24,15 @@ export const NavBar: FC = () => {
                     Парк Краснодар
                 </Link>
                 <div className={classes["links"]}>
+                    <Auth requiredPermission="VALIDATE">
+                        <Link
+                            to="/passages"
+                            inactiveProps={inactiveLinkProps}
+                            activeProps={activeLinkProps}
+                        >
+                            Билеты
+                        </Link>
+                    </Auth>
                     <Auth requiredPermission="EDIT">
                         <Link
                             to="/users"

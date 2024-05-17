@@ -1,23 +1,36 @@
 import {FC} from "react";
-import {IPassage, PassageStatus} from "@/models/passage";
+import {IPassage, IPassageExtended, isPassageExtended} from "@/models/passage";
 import {QrCode} from "@/components/QrCode/QrCode";
+import {PassageTicketStatus} from "@/components/PassageTicketStatus/PassageTicketStatus";
 
 import classes from "./PassageTicket.module.styl";
 import TrashIcon from "./trash.svg?react";
-import {PassageTicketStatus} from "@/components/PassageTicketStatus/PassageTicketStatus";
+import cn from "classnames";
 
 export interface IPassageTicketProps {
-    passage: IPassage;
+    passage: IPassage | IPassageExtended;
+    withMeta?: boolean;
+    className?: string;
     onDelete?: () => void;
 }
 
-export const PassageTicket: FC<IPassageTicketProps> = ({passage, onDelete}) => {
-    const { id, date, entryTime, status } = passage;
+const PROTOCOL = window.location.protocol;
+const HOST = window.location.host;
+
+const FULL_BASE_URL = `${PROTOCOL}//${HOST}${import.meta.env.BASE_URL}`;
+
+export const PassageTicket: FC<IPassageTicketProps> = ({passage, withMeta = false, className, onDelete}) => {
+    const { id, date, time, status } = passage;
+
+    const ticketClasses = cn(
+        classes["ticket"],
+        className
+    );
 
     return (
-        <div className={classes["ticket"]}>
+        <div className={ticketClasses}>
             <div className={classes["code-wrapper"]}>
-                <QrCode value="https://dl.spbstu.ru/grade/report/user/index.php?id=476" />
+                <QrCode value={`${FULL_BASE_URL}passage/${id}`} />
             </div>
             <div className={classes["main-part"]}>
                 <h4 className={classes["header"]}>
@@ -36,20 +49,50 @@ export const PassageTicket: FC<IPassageTicketProps> = ({passage, onDelete}) => {
                             </div>
                             <div className={classes["info"]}>
                                 <span className={classes["info-header"]}>Время</span>
-                                <span>{entryTime}</span>
+                                <span>{time.entryTime}</span>
                             </div>
                             <div className={classes["info"]}>
                                 <span className={classes["info-header"]}>Статус</span>
                                 <PassageTicketStatus status={status} />
                             </div>
                         </div>
-                        <div className={classes["meta-info"]}>
-                            Для ускорения процесса прохождения подтверждения и активации предъявите QR-код сотруднику парка
-                        </div>
+                        {
+                            isPassageExtended(passage) && (
+                                <div className={classes["data"]}>
+                                    <div className={classes["info"]}>
+                                        <span className={classes["info-header"]}>Email</span>
+                                        <span>{passage.user.email}</span>
+                                    </div>
+                                    <div className={classes["info"]}>
+                                        <span className={classes["info-header"]}>Фамилия</span>
+                                        <span>{passage.user.lastName}</span>
+                                    </div>
+                                    <div className={classes["info"]}>
+                                        <span className={classes["info-header"]}>Имя</span>
+                                        <span>{passage.user.firstName}</span>
+                                    </div>
+                                    <div className={classes["info"]}>
+                                        <span className={classes["info-header"]}>Отчество</span>
+                                        <span>{passage.user.middleName}</span>
+                                    </div>
+                                </div>
+                            )
+                        }
+                        {
+                            withMeta && (
+                                <div className={classes["meta-info"]}>
+                                    Для ускорения процесса прохождения подтверждения и активации предъявите QR-код сотруднику парка
+                                </div>
+                            )
+                        }
                     </div>
-                    <button type="button" className={classes["delete-button"]} onClick={onDelete}>
-                        <TrashIcon />
-                    </button>
+                    {
+                        onDelete && (
+                            <button type="button" className={classes["delete-button"]} onClick={onDelete}>
+                                <TrashIcon />
+                            </button>
+                        )
+                    }
                 </div>
             </div>
         </div>

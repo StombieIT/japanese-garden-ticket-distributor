@@ -1,6 +1,6 @@
 import {createEvent, createStore, sample} from "effector";
 import {createEffect} from "effector";
-import {IUser, IUserExtended, UserId} from "@/models/user";
+import {IUserExtended, UserId} from "@/models/user";
 import {IRole, RoleId} from "@/models/role";
 import {api} from "@/utils/api";
 import {AxiosResponse} from "axios";
