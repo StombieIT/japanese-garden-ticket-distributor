@@ -41,7 +41,7 @@ CREATE TABLE passage (
      passage_time_id INT NOT NULL,
      passage_date DATE NOT NULL,
      user_id INT NOT NULL,
-     passage_status_id INT,
+     passage_status_id INT NOT NULL DEFAULT 1,
      FOREIGN KEY (passage_time_id) REFERENCES passage_time(passage_time_id),
      FOREIGN KEY (user_id) REFERENCES `user`(user_id),
      FOREIGN KEY (passage_status_id) REFERENCES passage_status(passage_status_id)

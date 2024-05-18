@@ -28,8 +28,10 @@ export const PassageTickets: FC = () => {
                 passages.map(passage => (
                     <PassageTicket
                         key={passage.id}
+                        className={classes["ticket"]}
                         passage={passage}
                         onDelete={() => removePassageById(passage.id)}
+                        withMeta
                     />
                 ))
             }

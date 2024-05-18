@@ -15,10 +15,11 @@
 
     try {
         $passagesQuery = $pdo->prepare("
-            SELECT p.passage_id, pt.passage_time_id, pt.entry_time, p.passage_date, ps.passage_status_name
+            SELECT p.passage_id, pt.passage_time_id, pt.entry_time, p.passage_date, ps.passage_status_id,
+                   ps.passage_status_name
             FROM passage p
             JOIN passage_time pt ON p.passage_time_id = pt.passage_time_id
-            LEFT JOIN passage_status ps ON p.passage_status_id = ps.passage_status_id
+            JOIN passage_status ps ON p.passage_status_id = ps.passage_status_id
             WHERE p.user_id = :user_id
         ");
 
@@ -34,9 +35,11 @@
                     'id' => $passage['passage_time_id'],
                     'entryTime' => $passage['entry_time']
                 ],
-                'entryTime' => $passage['entry_time'],
                 'date' => $passage['passage_date'],
-                'status' => $passage['passage_status_name']
+                'status' => [
+                    'id' => $passage['passage_status_id'],
+                    'name' => $passage['passage_status_name']
+                ]
             ];
         }
 

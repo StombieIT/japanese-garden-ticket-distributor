@@ -1,32 +1,32 @@
 import {FC} from "react";
 import cn from "classnames";
 
-import { PassageStatus } from "@/models/passage";
+import { PassageStatusName } from "@/models/passage";
 
 import classes from "./PassageTicketStatus.module.styl";
 
 export interface IPassageStatusProps {
-    status: PassageStatus | null;
+    statusName: PassageStatusName;
 }
 
 const TEXT_BY_STATUS_MAP = {
-    [PassageStatus.VALIDATED]: "Подтвержден",
-    [PassageStatus.ACTIVATED]: "Полуактивирован",
-    [PassageStatus.FULLY_ACTIVATED]: "Активирован"
+    [PassageStatusName.UNCHECKED]: "На подтверждении",
+    [PassageStatusName.VALIDATED]: "Подтвержден",
+    [PassageStatusName.ACTIVATED]: "Полуактивирован",
+    [PassageStatusName.FULLY_ACTIVATED]: "Активирован",
+    [PassageStatusName.REJECTED]: "Отменён"
 } as const;
 
-export const PassageTicketStatus: FC<IPassageStatusProps> = ({status}) => {
+export const PassageTicketStatus: FC<IPassageStatusProps> = ({statusName}) => {
     const statusClasses = cn(
         classes["status"],
-        classes[`__${status}`]
+        classes[`__${statusName}`]
     );
 
     return (
         <span className={statusClasses}>
             {
-                status
-                    ? TEXT_BY_STATUS_MAP[status]
-                    : "На подтверждении"
+                TEXT_BY_STATUS_MAP[statusName]
             }
         </span>
     );

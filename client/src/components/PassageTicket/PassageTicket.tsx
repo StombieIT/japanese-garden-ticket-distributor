@@ -53,7 +53,7 @@ export const PassageTicket: FC<IPassageTicketProps> = ({passage, withMeta = fals
                             </div>
                             <div className={classes["info"]}>
                                 <span className={classes["info-header"]}>Статус</span>
-                                <PassageTicketStatus status={status} />
+                                <PassageTicketStatus statusName={status.name} />
                             </div>
                         </div>
                         {

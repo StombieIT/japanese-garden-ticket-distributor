@@ -1,0 +1,22 @@
+.wrapper {
+  position: relative;
+}
+
+.options {
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.option {
+  cursor: pointer;
+
+  & + .option {
+    margin-top: 15px;
+  }
+}

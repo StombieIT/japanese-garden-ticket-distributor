@@ -2,10 +2,19 @@ import {IUser} from "@/models/user";
 
 export type PassageId = number;
 
-export const enum PassageStatus {
+export type PassageStatusId = number;
+
+export const enum PassageStatusName {
+    UNCHECKED = "unchecked",
     VALIDATED = "validated",
     ACTIVATED = "activated",
-    FULLY_ACTIVATED = "fully-activated"
+    FULLY_ACTIVATED = "fully-activated",
+    REJECTED = "rejected"
+}
+
+export interface IPassageStatus {
+    id: PassageStatusId;
+    name: PassageStatusName;
 }
 
 export type PassageTimeId = number;
@@ -20,7 +29,7 @@ export interface IPassage {
     id: PassageId;
     date: string;
     time: IPassageTime;
-    status: PassageStatus | null;
+    status: IPassageStatus;
 }
 
 export interface IPassageExtended extends IPassage {

@@ -13,8 +13,14 @@
 
     $authUserId = $_SESSION["authUser"]["id"];
 
-    // Проверка разрешений пользователя на просмотр времён прохода
-    if (!in_array("VIEW_PASSAGE_TIMES", $_SESSION["authUser"]["permissions"])) {
+    $authUser = $_SESSION["authUser"];
+    $role = $authUser["role"] ?? null;
+    $permissions = $role["permissions"] ?? [];
+    $permissionNames = array_column($permissions, "name");
+
+    $hasViewPassagesPermission = in_array("VALIDATE", $permissionNames);
+
+    if (!$hasViewPassagesPermission) {
         http_response_code(403);
         echo json_encode(["error" => "Forbidden: No permission to view passage times"]);
         exit;

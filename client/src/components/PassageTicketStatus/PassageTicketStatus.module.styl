@@ -1,8 +1,13 @@
 .status {
+  display: block;
   text-transform: uppercase;
+  text-align: center;
   padding: 5px;
   border-radius: 10px;
-  background-color: #eaeaea;
+
+  &.__unchecked {
+    background-color: #eaeaea;
+  }
 
   &.__validated {
     background-color: #abd5fc;
@@ -14,5 +19,9 @@
 
   &.__fully-activated {
     background-color: #72f572;
+  }
+
+  &.__rejected {
+    background-color: #ff3535;
   }
 }
