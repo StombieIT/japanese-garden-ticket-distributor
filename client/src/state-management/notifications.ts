@@ -9,8 +9,4 @@ export const $notificationsStore = createStore<INotification[]>([])
     .on(removeNotificationById, (notifications, notificationId) =>
         notifications.filter(notification => notification.id !== notificationId)
     )
-    .on(appendNotification, (notifications, notification) => [...notifications, notification])
-    // .on(register.fail, (state) => [
-    //     ...state,
-    //     createNotification({ type: NotificationType.ERROR, text: "Неуспешная попытка регистрации" })
-    // ]);
+    .on(appendNotification, (notifications, notification) => [...notifications, notification]);

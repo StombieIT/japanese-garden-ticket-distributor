@@ -1,5 +1,5 @@
 .content {
-  height: 100%;
+  min-height: 100%;
 }
 
 .container {
@@ -11,6 +11,7 @@
 }
 
 .common-info {
+  align-self: flex-start
   font-size: 21px;
   z-index: 1;
   transform: scale(1.2);
@@ -25,4 +26,38 @@
 .common-meta {
   font-size: 16px;
   color: #313131;
+}
+
+.passage-form-container {
+  display: flex;
+}
+
+.info-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.__form {
+    min-height: 350px;
+  }
+}
+
+.suggest-header {
+  margin-top: 20px;
+}
+
+.submit-button {
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.passage-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passage-template {
+  flex-basis: 800px;
 }

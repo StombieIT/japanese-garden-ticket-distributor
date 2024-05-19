@@ -20,7 +20,7 @@ export const Dropdown = <T, I extends string | number = number>({ items, selecte
         >
             <div className={classes["option"]}>
                 {
-                    renderItem(items[selectedItemId])
+                    (selectedItemId && items[selectedItemId]) && renderItem(items[selectedItemId])
                 }
             </div>
             {
@@ -31,7 +31,6 @@ export const Dropdown = <T, I extends string | number = number>({ items, selecte
                                     <div
                                         key={itemId}
                                         className={classes["option"]}
-                                        // @ts-ignore
                                         onClick={() => onChange(Number(itemId))}
                                     >
                                         {renderItem(item)}

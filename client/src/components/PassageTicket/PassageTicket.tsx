@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {forwardRef} from "react";
 import {IPassage, IPassageExtended, isPassageExtended} from "@/models/passage";
 import {QrCode} from "@/components/QrCode/QrCode";
 import {PassageTicketStatus} from "@/components/PassageTicketStatus/PassageTicketStatus";
@@ -19,7 +19,10 @@ const HOST = window.location.host;
 
 const FULL_BASE_URL = `${PROTOCOL}//${HOST}${import.meta.env.BASE_URL}`;
 
-export const PassageTicket: FC<IPassageTicketProps> = ({passage, withMeta = false, className, onDelete}) => {
+export const PassageTicket = forwardRef<HTMLDivElement, IPassageTicketProps>(
+    ({passage, withMeta = false, className, onDelete},
+     ref
+) => {
     const { id, date, time, status } = passage;
 
     const ticketClasses = cn(
@@ -28,7 +31,7 @@ export const PassageTicket: FC<IPassageTicketProps> = ({passage, withMeta = fals
     );
 
     return (
-        <div className={ticketClasses}>
+        <div ref={ref} className={ticketClasses}>
             <div className={classes["code-wrapper"]}>
                 <QrCode value={`${FULL_BASE_URL}passage/${id}`} />
             </div>
@@ -97,4 +100,4 @@ export const PassageTicket: FC<IPassageTicketProps> = ({passage, withMeta = fals
             </div>
         </div>
     );
-};
+});

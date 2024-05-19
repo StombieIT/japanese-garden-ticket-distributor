@@ -1,8 +1,14 @@
 import {FC} from "react";
 import {Container} from "@/components/Container/Container";
 import {ImageSlider} from "@/components/ImageSlider/ImageSlider";
+import {PassageForm} from "@/components/PassageForm/PassageForm";
+import {Statistics} from "@/components/Statistics/Statistics";
 
 import classes from "./Content.module.styl";
+import cn from "classnames";
+import {Button} from "@/components/Button/Button";
+import {Auth} from "@/components/Auth/Auth";
+import {PassageTemplate} from "@/components/PassageTemplate/PassageTemplate";
 
 const parkImagesModules = import.meta.glob("./assets/*.(jpg|png)", { eager: true });
 
@@ -21,6 +27,18 @@ export const Content: FC = () => {
                     </div>
                     <ImageSlider imagesSrc={parkImagesSrc} />
                 </div>
+                <h2 className={classes["suggest-header"]}>
+                    Подайте заявку на экскурсию в Японский сад прямо сейчас!
+                </h2>
+                <div className={classes["passage-form-container"]}>
+                    <div className={cn(classes["info-wrapper"], classes["__form"])}>
+                        <PassageForm />
+                    </div>
+                    <div className={classes["info-wrapper"]}>
+                        <Statistics />
+                    </div>
+                </div>
+                <PassageTemplate />
             </Container>
         </main>
     );

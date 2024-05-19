@@ -46,3 +46,31 @@ CREATE TABLE passage (
      FOREIGN KEY (user_id) REFERENCES `user`(user_id),
      FOREIGN KEY (passage_status_id) REFERENCES passage_status(passage_status_id)
 );
+
+DELIMITER //
+
+CREATE FUNCTION GetTicketsCountByStatus(status_name VARCHAR(255)) RETURNS INT
+BEGIN
+    DECLARE ticket_count INT;
+SELECT COUNT(*) INTO ticket_count
+FROM passage
+WHERE passage_status_id = (
+    SELECT passage_status_id
+    FROM passage_status
+    WHERE passage_status_name = status_name
+);
+
+RETURN ticket_count;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE GetTotalTicketsCount()
+BEGIN
+SELECT COUNT(*) AS totalTickets FROM passage;
+END //
+
+DELIMITER ;
+

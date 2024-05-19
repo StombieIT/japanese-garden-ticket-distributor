@@ -16,6 +16,7 @@ export const ImageSlider: FC<IImageSliderProps> = ({imagesSrc}) => {
                 {
                     imagesSrc.map((imageSrc, idx) => (
                         <div
+                            key={imageSrc}
                             className={cn(
                                 classes["image-wrapper"],
                                 {

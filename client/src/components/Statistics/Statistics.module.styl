@@ -1,0 +1,28 @@
+.statistics {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px $shadow-color
+  padding: 30px;
+  border-radius: 30px;
+  min-width: 500px;
+  animation: pulse 1s linear infinite;
+}
+
+.header {
+  font-size: 25px;
+  padding: 5px;
+  border-bottom: 3px solid $main-color;
+}
+
+.line {
+  margin-top: 25px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.02)
+  }
+}

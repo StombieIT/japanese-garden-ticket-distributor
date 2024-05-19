@@ -21,3 +21,5 @@ export const authenticateUser = createEffect(async (authParameters?: IAuthentica
 
 export const $authUserStore = createStore<IAuthUser | null>(null)
     .on(authenticateUser.doneData, (state, authUser) => authUser);
+
+export const $isAuth = $authUserStore.map(Boolean);
