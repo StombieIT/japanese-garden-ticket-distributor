@@ -10,6 +10,7 @@ import {
 } from "@/models/passage";
 import {createEffect} from "effector";
 import {api} from "@/utils/api";
+import {reset} from "patronum";
 
 export const getPassage = createEffect(async (passageId: PassageId) => {
     const [passage, times, statuses] = await Promise.all([
@@ -85,3 +86,10 @@ export const $editedTimeId = createStore<PassageTimeId | null>(null)
         }
         return timeId;
     });
+
+export const resetPassage = createEvent();
+
+reset({
+    clock: resetPassage,
+    target: [$passage, $editedTimeId, $editedStatusId]
+});

@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import {Container} from "@/components/Container/Container";
 import {useUnit} from "effector-react";
 import {
@@ -7,7 +7,7 @@ import {
     $passage,
     $statusById,
     $timeById,
-    editStatusId, editTimeId, submitEdited
+    editStatusId, editTimeId, resetPassage, submitEdited
 } from "@/state-management/passage";
 import {Dropdown} from "@/components/Dropdown/Dropdown";
 import {PassageTicketStatus} from "@/components/PassageTicketStatus/PassageTicketStatus";
@@ -21,6 +21,8 @@ export const Passage: FC = () => {
     const times = useUnit($timeById);
     const editedStatusId = useUnit($editedStatusId);
     const editedTimeId = useUnit($editedTimeId);
+
+    useEffect(() => resetPassage, []);
 
     return (
         <Container className={classes["passage-content"]}>
