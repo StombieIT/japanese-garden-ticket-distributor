@@ -16,13 +16,18 @@ import classes from "./Passage.module.styl";
 import {Button} from "@/components/Button/Button";
 
 export const Passage: FC = () => {
-    const passage = useUnit($passage)!;
+    const passage = useUnit($passage);
     const statuses = useUnit($statusById);
     const times = useUnit($timeById);
     const editedStatusId = useUnit($editedStatusId);
     const editedTimeId = useUnit($editedTimeId);
 
+
     useEffect(() => resetPassage, []);
+
+    if (!passage) {
+        return null;
+    }
 
     return (
         <Container className={classes["passage-content"]}>

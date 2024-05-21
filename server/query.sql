@@ -21,6 +21,7 @@ CREATE TABLE `user` (
     email VARCHAR(128) NOT NULL UNIQUE,
     first_name VARCHAR(64) NOT NULL,
     last_name VARCHAR(64) NOT NULL,
+    password VARCHAR(128) NOT NULL,
     middle_name VARCHAR(64) NOT NULL,
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES `role`(role_id)
