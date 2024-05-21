@@ -3,29 +3,6 @@
     include('pdo.php');
     include('json.php');
 
-//    session_start();
-
-//    if (!isset($_SESSION["authUser"])) {
-//        http_response_code(401);
-//        echo json_encode(["error" => "Unauthorized"]);
-//        exit;
-//    }
-
-//    $authUserId = $_SESSION["authUser"]["id"];
-//
-//    $authUser = $_SESSION["authUser"];
-//    $role = $authUser["role"] ?? null;
-//    $permissions = $role["permissions"] ?? [];
-//    $permissionNames = array_column($permissions, "name");
-//
-//    $hasViewPassagesPermission = in_array("VALIDATE", $permissionNames);
-//
-//    if (!$hasViewPassagesPermission) {
-//        http_response_code(403);
-//        echo json_encode(["error" => "Forbidden: No permission to view passage times"]);
-//        exit;
-//    }
-
     try {
         $query = $pdo->prepare("
             SELECT passage_time_id, entry_time
