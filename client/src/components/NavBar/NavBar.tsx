@@ -35,6 +35,13 @@ export const NavBar: FC = () => {
                     </Auth>
                     <Auth requiredPermission="EDIT">
                         <Link
+                            to="/times"
+                            inactiveProps={inactiveLinkProps}
+                            activeProps={activeLinkProps}
+                        >
+                            Время
+                        </Link>
+                        <Link
                             to="/users"
                             inactiveProps={inactiveLinkProps}
                             activeProps={activeLinkProps}

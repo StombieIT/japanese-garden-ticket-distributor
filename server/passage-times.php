@@ -7,7 +7,7 @@
         $query = $pdo->prepare("
             SELECT passage_time_id, entry_time
             FROM passage_time
-            ORDER BY entry_time
+            ORDER BY passage_time_id
         ");
 
         $query->execute();

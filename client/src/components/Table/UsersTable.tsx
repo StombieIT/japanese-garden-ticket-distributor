@@ -25,7 +25,7 @@ export const UsersTable: FC = () => {
     }, []);
 
     return (
-        <Container className={classes["users-content"]}>
+        <Container className={classes["content"]}>
             <table className={classes["table"]}>
                 <thead className={classes["head"]}>
                     <tr className={classes["row"]}>
