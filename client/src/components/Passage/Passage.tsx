@@ -73,7 +73,7 @@ export const Passage: FC = () => {
                         items={statuses}
                         selectedItemId={editedStatusId ?? passage.status.id}
                         renderItem={status => (
-                            <PassageTicketStatus key={status.id} statusName={status.name} />
+                            <PassageTicketStatus key={status.id} status={status} />
                         )}
                         onChange={itemId => editStatusId(itemId)}
                     />

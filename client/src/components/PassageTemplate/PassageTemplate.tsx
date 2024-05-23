@@ -3,7 +3,7 @@ import {useUnit} from "effector-react";
 
 import {PassageTicket} from "@/components/PassageTicket/PassageTicket";
 import {$date, $selectedTime} from "@/state-management/passage-form";
-import {IPassageExtended, PassageStatusName} from "@/models/passage";
+import {IPassageExtended} from "@/models/passage";
 import {$authUserStore} from "@/state-management/auth";
 import {createPassage} from "@/state-management";
 
@@ -33,7 +33,8 @@ export const PassageTemplate: FC = () => {
         time,
         status: {
             id: 0,
-            name: PassageStatusName.UNCHECKED
+            name: "На подтверждении",
+            color: "#eaeaea"
         },
         user: authUser
     };

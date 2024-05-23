@@ -1,11 +1,11 @@
 import {createEffect} from "effector";
 
-import {PassageTimeId} from "@/models/passage";
+import {PassageStatusId} from "@/models/passage";
 import {api} from "@/utils/api";
 
 export interface ICreatePassageParams {
     date: string;
-    timeId: PassageTimeId;
+    timeId: PassageStatusId;
 }
 
 export const createPassage = createEffect((params: ICreatePassageParams) =>

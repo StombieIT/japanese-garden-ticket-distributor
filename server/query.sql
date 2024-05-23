@@ -34,7 +34,8 @@ CREATE TABLE passage_time (
 
 CREATE TABLE passage_status (
     passage_status_id INT PRIMARY KEY AUTO_INCREMENT,
-    passage_status_name VARCHAR(128) NOT NULL
+    passage_status_name VARCHAR(128) NOT NULL,
+    color VARCHAR(9)
 );
 
 CREATE TABLE passage (

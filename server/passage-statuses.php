@@ -13,7 +13,7 @@
 
     try {
         // Выполнение запроса к базе данных для получения всех статусов прохода
-        $statusQuery = $pdo->prepare("SELECT passage_status_id id, passage_status_name name FROM passage_status ORDER BY passage_status_id");
+        $statusQuery = $pdo->prepare("SELECT passage_status_id id, passage_status_name name, color FROM passage_status ORDER BY passage_status_id");
         $statusQuery->execute();
 
         $statuses = $statusQuery->fetchAll(PDO::FETCH_ASSOC);

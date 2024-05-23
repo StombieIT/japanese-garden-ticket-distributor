@@ -1,12 +1,11 @@
 import {createEvent, createStore, sample} from "effector";
 import {
     IPassageExtended,
-    IPassageTime,
     PassageId,
     IPassageStatus,
     PassageStatusId,
     PassageTimeId,
-    IPassage
+    IPassageTime,
 } from "@/models/passage";
 import {createEffect} from "effector";
 import {api} from "@/utils/api";
@@ -55,8 +54,8 @@ const imperativeEditStatusId = sample({
 
 interface ISubmitEditedParams {
     passageId: PassageId;
-    editedTimeId: PassageTimeId | null;
-    editedStatusId: PassageTimeId | null;
+    editedTimeId: PassageStatusId | null;
+    editedStatusId: PassageStatusId | null;
 }
 
 export const submitEdited = createEffect((params: ISubmitEditedParams) =>

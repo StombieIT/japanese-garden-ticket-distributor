@@ -3,7 +3,6 @@ import {AxiosResponse} from "axios";
 import {IUserExtended} from "@/models/user";
 import {api} from "@/utils/api";
 import {IPassageTime, PassageTimeId} from "@/models/passage";
-import {reset} from "patronum";
 
 interface IAddedPassageTime extends Omit<IPassageTime, "id"> {}
 
@@ -80,9 +79,10 @@ export const $editingTimes = createStore<Record<PassageTimeId, IPassageTime>>({}
         return {...editingUsers};
     })
 
-reset({
+sample({
     clock: [updateTimes.done, deleteTimes.done],
-    target: [$editingTimes]
+    fn: () => ({}),
+    target: $editingTimes
 });
 
 export const addTime = createEvent();
@@ -104,8 +104,9 @@ export const $addingTimes = createStore<IAddedPassageTime[]>([])
         return [...addingTimes];
     });
 
-reset({
+sample({
     clock: [addTimes.done, clearAddingTimes],
+    fn: () => [],
     target: $addingTimes
 });
 

@@ -42,6 +42,13 @@ export const NavBar: FC = () => {
                             Время
                         </Link>
                         <Link
+                            to="/statuses"
+                            inactiveProps={inactiveLinkProps}
+                            activeProps={activeLinkProps}
+                        >
+                            Статусы
+                        </Link>
+                        <Link
                             to="/users"
                             inactiveProps={inactiveLinkProps}
                             activeProps={activeLinkProps}

@@ -22,6 +22,7 @@ import { Route as AuthRegisterImport } from './routes/_auth/register'
 
 const UsersLazyImport = createFileRoute('/users')()
 const TimesLazyImport = createFileRoute('/times')()
+const StatusesLazyImport = createFileRoute('/statuses')()
 const PassagesLazyImport = createFileRoute('/passages')()
 const AuthLazyImport = createFileRoute('/_auth')()
 const IndexLazyImport = createFileRoute('/')()
@@ -37,6 +38,11 @@ const TimesLazyRoute = TimesLazyImport.update({
   path: '/times',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/times.lazy').then((d) => d.Route))
+
+const StatusesLazyRoute = StatusesLazyImport.update({
+  path: '/statuses',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/statuses.lazy').then((d) => d.Route))
 
 const PassagesLazyRoute = PassagesLazyImport.update({
   path: '/passages',
@@ -97,6 +103,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PassagesLazyImport
       parentRoute: typeof rootRoute
     }
+    '/statuses': {
+      preLoaderRoute: typeof StatusesLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/times': {
       preLoaderRoute: typeof TimesLazyImport
       parentRoute: typeof rootRoute
@@ -124,6 +134,7 @@ export const routeTree = rootRoute.addChildren([
   PassageRoute,
   AuthLazyRoute.addChildren([AuthRegisterRoute, AuthSignInRoute]),
   PassagesLazyRoute,
+  StatusesLazyRoute,
   TimesLazyRoute,
   UsersLazyRoute,
 ])

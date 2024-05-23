@@ -60,7 +60,6 @@ export const TimesTable: FC = () => {
                                     {
                                         editingTime
                                             ? <input
-                                                type="email"
                                                 className={classes["editing-field"]}
                                                 // @ts-ignore
                                                 onChange={evt => changeEditingTimeProperty({

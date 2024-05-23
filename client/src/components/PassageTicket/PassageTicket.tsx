@@ -56,7 +56,7 @@ export const PassageTicket = forwardRef<HTMLDivElement, IPassageTicketProps>(
                             </div>
                             <div className={classes["info"]}>
                                 <span className={classes["info-header"]}>Статус</span>
-                                <PassageTicketStatus statusName={status.name} />
+                                <PassageTicketStatus status={status} />
                             </div>
                         </div>
                         {

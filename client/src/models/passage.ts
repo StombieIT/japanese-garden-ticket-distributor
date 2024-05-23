@@ -1,20 +1,15 @@
 import {IUser} from "@/models/user";
-
-export type PassageId = number;
+import {Color} from "@/models/color";
 
 export type PassageStatusId = number;
 
-export const enum PassageStatusName {
-    UNCHECKED = "unchecked",
-    VALIDATED = "validated",
-    ACTIVATED = "activated",
-    FULLY_ACTIVATED = "fully-activated",
-    REJECTED = "rejected"
+export interface IPassageStatusPayload {
+    name: string;
+    color: Color;
 }
 
-export interface IPassageStatus {
+export interface IPassageStatus extends IPassageStatusPayload {
     id: PassageStatusId;
-    name: PassageStatusName;
 }
 
 export type PassageTimeId = number;
@@ -24,6 +19,8 @@ export interface IPassageTime {
     id: PassageTimeId;
     entryTime: EntryTime;
 }
+
+export type PassageId = number;
 
 export interface IPassage {
     id: PassageId;
