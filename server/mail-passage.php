@@ -1,8 +1,8 @@
 <?php
     function sendPassage($user, $passage) {
-        require_once("mail.php");
-        require_once("qr.php");
-        require_once("variables.php");
+        include("mail.php");
+        include("qr.php");
+        include("variables.php");
 
         $mail->addAddress($user["email"]);
 
@@ -25,7 +25,7 @@
         $html .= formatLine('Имя:', $user['firstName']);
         $html .= formatLine('Отчество:', $user['middleName']);
         $html .= formatLine('Email:', $user['email']);
-        $html .= formatLine('Статус:', generateStatus($passage['statusName']));
+        $html .= formatLine('Статус:', generateStatus($passage['status']));
         $html .= formatLine('Время:', $passage['entryTime']);
 
         $mail->addEmbeddedImage('./qr.png', 'qrImage', 'image/png');
@@ -41,28 +41,10 @@
         return '<div style="display: flex; justify-content: space-between; margin-top: 40px;"><span>' . $label . '</span><span>' . $value . '</span></div>';
     }
 
-    function generateStatus($statusName) {
-        $textByStatusMap = [
-            'unchecked' => 'На подтверждении',
-            'validated' => 'Подтвержден',
-            'activated' => 'Полуактивирован',
-            'fully-activated' => 'Активирован',
-            'rejected' => 'Отменён'
-        ];
-
-        $stylesByStatusMap = [
-            'unchecked' => 'background-color: #eaeaea;',
-            'validated' => 'background-color: #abd5fc;',
-            'activated' => 'background-color: #f39cf2;',
-            'fully-activated' => 'background-color: #72f572;',
-            'rejected' => 'background-color: #ff3535;'
-        ];
-
-        // Получение текста и стилей для текущего статуса
-        $statusText = $textByStatusMap[$statusName] ?? 'Статус не определён';
-        $statusStyle = $stylesByStatusMap[$statusName] ?? '';
-
+    function generateStatus($status) {
         // Создание строки со статусом и инлайн стилями
-        return "<span style='display: block; text-transform: uppercase; text-align: center; padding: 5px; border-radius: 10px; $statusStyle'>$statusText</span>";
+        $statusName = $status['name'];
+        $statusColor = $status['color'];
+        return "<span style='display: block; text-transform: uppercase; text-align: center; padding: 5px; border-radius: 10px; background-color: $statusColor'>$statusName</span>";
     }
 ?>

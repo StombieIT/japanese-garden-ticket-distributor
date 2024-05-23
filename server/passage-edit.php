@@ -59,7 +59,7 @@
             if ($updateQuery->rowCount() > 0) {
                 // Извлекаем обновленные данные
                 $passageDetailsQuery = $pdo->prepare("
-                    SELECT p.*, pt.entry_time, ps.passage_status_name,
+                    SELECT p.*, pt.entry_time, ps.passage_status_name, ps.color, ps.passage_status_id,
                            u.user_id, u.email, u.first_name, u.last_name, u.middle_name
                     FROM passage p
                     JOIN passage_time pt ON p.passage_time_id = pt.passage_time_id
@@ -76,7 +76,11 @@
                         'timeId' => $passageDetails['passage_time_id'],
                         'entryTime' => $passageDetails['entry_time'],
                         'date' => $passageDetails['passage_date'],
-                        'statusName' => $passageDetails['passage_status_name']
+                        'status' => [
+                            'id' => $passageDetails["passage_status_id"],
+                            'name' => $passageDetails["passage_status_name"],
+                            'color' => $passageDetails["color"],
+                        ]
                     ];
 
                     $user = [
