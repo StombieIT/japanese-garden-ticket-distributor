@@ -26,7 +26,7 @@
 
     try {
         // Проверка существования timeId в базе данных
-        $checkTimeStmt = $pdo->prepare("SELECT EXISTS(SELECT 1 FROM passage_time WHERE passage_time_id = ?)");
+        $checkTimeStmt = $pdo->prepare("CALL CheckPassageTimeExists(?)");
         $checkTimeStmt->execute([$timeId]);
         $timeExists = $checkTimeStmt->fetchColumn();
 

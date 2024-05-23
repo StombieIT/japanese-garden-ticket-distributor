@@ -76,3 +76,34 @@ END //
 
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE GetPassageStatusModels()
+BEGIN
+SELECT passage_status_id AS id,
+       passage_status_name AS name,
+       color
+FROM passage_status
+ORDER BY passage_status_id;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE GetUserByEmail(IN userEmail VARCHAR(255))
+BEGIN
+SELECT * FROM `user` WHERE email = userEmail;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE CheckPassageTimeExists(IN checkTimeId INT)
+BEGIN
+SELECT EXISTS(SELECT 1 FROM passage_time WHERE passage_time_id = checkTimeId) AS existsFlag;
+END //
+
+DELIMITER ;
+

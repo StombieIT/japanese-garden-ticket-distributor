@@ -6,9 +6,9 @@
         global $pdo;
         $user = null;
 
-        $userSth = $pdo->prepare("SELECT * FROM `user` WHERE email = :email");
+        $userSth = $pdo->prepare("CALL GetUserByEmail(?)");
 
-        $userSth->execute([':email' => $email]);
+        $userSth->execute([$email]);
         if (($userRow = $userSth->fetch(PDO::FETCH_ASSOC)) && $userRow["password"] == $password) {
             $userSth->closeCursor();
 
