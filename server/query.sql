@@ -23,6 +23,8 @@ CREATE TABLE `user` (
     last_name VARCHAR(64) NOT NULL,
     password VARCHAR(128) NOT NULL,
     middle_name VARCHAR(64) NOT NULL,
+    passport_series CHAR(4),
+    passport_number CHAR(6),
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES `role`(role_id)
 );
@@ -155,3 +157,18 @@ ORDER BY p.passage_date DESC;
 END //
 
 DELIMITER ;
+
+CREATE VIEW UserDetailView AS
+SELECT
+    u.user_id,
+    u.email,
+    u.first_name,
+    u.last_name,
+    u.middle_name,
+    r.role_id,
+    r.role_name,
+    u.passport_series,
+    u.passport_number
+FROM `user` u
+         LEFT JOIN `role` r ON u.role_id = r.role_id
+ORDER BY u.user_id;

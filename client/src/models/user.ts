@@ -1,5 +1,6 @@
 import {Email} from "./email";
 import {IAuthRole, RoleId} from "./role";
+import {NumberedString} from "@/models/common";
 
 export type UserId = number;
 
@@ -9,6 +10,8 @@ export interface IUser {
     firstName: string;
     lastName: string;
     middleName: string;
+    passportSeries: NumberedString | null;
+    passportNumber: NumberedString | null;
 }
 
 export interface IUserExtended extends IUser {

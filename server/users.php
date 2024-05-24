@@ -22,12 +22,7 @@
 
     try {
         // SQL запрос для получения данных о пользователях и их ролях
-        $query = $pdo->prepare("
-            SELECT u.user_id, u.email, u.first_name, u.last_name, u.middle_name, r.role_id, r.role_name
-            FROM `user` u
-            LEFT JOIN `role` r ON u.role_id = r.role_id
-            ORDER BY u.user_id
-        ");
+        $query = $pdo->prepare("SELECT * FROM UserDetailView");
 
         $query->execute();
 
@@ -42,15 +37,11 @@
                     'firstName' => $row['first_name'],
                     'lastName' => $row['last_name'],
                     'middleName' => $row['middle_name'],
-                    'roleId' => $row['role_id']
+                    'roleId' => $row['role_id'],
+                    'passportSeries' => $row['passport_series'],
+                    'passportNumber' => $row['passport_number']
                 ];
             }
-//            if ($row['role_id'] !== null) {
-//                $users[$userId]['role'] = [
-//                    'id' => $row['role_id'],
-//                    'name' => $row['role_name']
-//                ];
-//            }
         }
 
         // Возвращаем данные о пользователях в JSON формате

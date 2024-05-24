@@ -46,14 +46,25 @@
                 if (empty($user['id']) || empty($user['email']) || empty($user['firstName']) || empty($user['lastName'])) {
                     continue; // Пропуск пользователей с недостаточными данными
                 }
-                $stmt = $pdo->prepare("UPDATE `user` SET email = :email, first_name = :firstName, last_name = :lastName, middle_name = :middleName, role_id = :roleId WHERE user_id = :userId");
+                $stmt = $pdo->prepare("UPDATE `user`
+                                            SET
+                                                email = :email,
+                                                first_name = :firstName,
+                                                last_name = :lastName,
+                                                middle_name = :middleName,
+                                                role_id = :roleId,
+                                                passport_series = :passport_series,
+                                                passport_number = :passport_number
+                                            WHERE user_id = :userId");
                 $stmt->execute([
                     ':email' => $user['email'],
                     ':firstName' => $user['firstName'],
                     ':lastName' => $user['lastName'],
                     ':middleName' => $user['middleName'] ?? null, // Учитывая, что middleName может быть не предоставлен
                     ':roleId' => $user['roleId'] ?? null, // Учитывая, что roleId может быть не предоставлен
-                    ':userId' => $user['id']
+                    ':userId' => $user['id'],
+                    ':passport_series' => $user['passportSeries'],
+                    ':passport_number' => $user['passportNumber']
                 ]);
                 if ($stmt->rowCount() > 0) {
                     $updatedUsers[] = $user['id'];

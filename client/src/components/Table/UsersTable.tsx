@@ -35,6 +35,8 @@ export const UsersTable: FC = () => {
                         <th className={classes["cell"]}>Фамилия</th>
                         <th className={classes["cell"]}>Имя</th>
                         <th className={classes["cell"]}>Отчество</th>
+                        <th className={classes["cell"]}>Серия паспорта</th>
+                        <th className={classes["cell"]}>Номер паспорта</th>
                         <th className={classes["cell"]}>Роль</th>
                     </tr>
                 </thead>
@@ -116,6 +118,70 @@ export const UsersTable: FC = () => {
                                                     value={editingUser.middleName}
                                                 />
                                                 : user.middleName
+                                        }
+                                    </td>
+                                    <td className={classes["cell"]}>
+                                        {
+                                            editingUser
+                                                ? <>
+                                                    {
+                                                        editingUser.passportSeries !== null && (
+                                                            <input
+                                                                className={classes["editing-field"]}
+                                                                onChange={evt => changeEditingUserProperty({
+                                                                    userId: user.id,
+                                                                    property: "passportSeries",
+                                                                    value: evt.target.value
+                                                                })}
+                                                                value={editingUser.passportSeries}
+                                                            />
+                                                        )
+                                                    }
+                                                    <Button
+                                                        onClick={() => changeEditingUserProperty({
+                                                            userId: user.id,
+                                                            property: "passportSeries",
+                                                            value: editingUser.passportSeries === null
+                                                                ? "0000"
+                                                                : null
+                                                        })}
+                                                    >
+                                                        {editingUser.passportSeries === null ? "+" : "-"}
+                                                    </Button>
+                                                </>
+                                                : user.passportSeries
+                                        }
+                                    </td>
+                                    <td className={classes["cell"]}>
+                                        {
+                                            editingUser
+                                                ? <>
+                                                    {
+                                                        editingUser.passportNumber !== null && (
+                                                            <input
+                                                                className={classes["editing-field"]}
+                                                                onChange={evt => changeEditingUserProperty({
+                                                                    userId: user.id,
+                                                                    property: "passportNumber",
+                                                                    value: evt.target.value
+                                                                })}
+                                                                value={editingUser.passportNumber}
+                                                            />
+                                                        )
+                                                    }
+                                                    <Button
+                                                        onClick={() => changeEditingUserProperty({
+                                                            userId: user.id,
+                                                            property: "passportNumber",
+                                                            value: editingUser.passportNumber === null
+                                                                ? "000000"
+                                                                : null
+                                                        })}
+                                                    >
+                                                        {editingUser.passportNumber === null ? "+" : "-"}
+                                                    </Button>
+                                                </>
+                                                : user.passportNumber
                                         }
                                     </td>
                                     <td className={classes["cell"]}>
