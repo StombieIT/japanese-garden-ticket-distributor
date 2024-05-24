@@ -1,3 +1,68 @@
 .footer {
+  margin-top: 50px;
+  padding: 50px 0;
+  background-color: #000;
+  color: #fff;
   display: block;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  width: 200px;
+  height: @width;
+}
+
+.image {
+  height: 100%;
+}
+
+.header {
+  font-size: 30px;
+
+  &.__mt {
+    margin-top: 20px;
+  }
+
+  &.__underline {
+    font-size: 30px;
+    padding: 15px;
+    border-bottom: 2px solid #fff;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.media-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: unset;
+
+  & + .link {
+    margin-top: 15px;
+  }
+}
+
+.icon-link {
+  color: unset;
+  height: fit-content;
+  margin: 10px;
+  transition: transform .3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
