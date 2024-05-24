@@ -19,7 +19,12 @@ export const authenticateUser = createEffect(async (authParameters?: IAuthentica
     return result.data;
 });
 
+export const deauthenticateUser = createEffect(() =>
+    api.post("/deauth.php")
+);
+
 export const $authUserStore = createStore<IAuthUser | null>(null)
-    .on(authenticateUser.doneData, (state, authUser) => authUser);
+    .on(authenticateUser.doneData, (state, authUser) => authUser)
+    .on(deauthenticateUser.done, () => null);
 
 export const $isAuth = $authUserStore.map(Boolean);

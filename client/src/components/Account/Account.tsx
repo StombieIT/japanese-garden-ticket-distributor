@@ -6,7 +6,7 @@ import {StatusContent} from "@/components/StatusContent/StatusContent";
 
 import classes from "./Account.module.styl";
 import {ProfileCard} from "@/components/ProfileCard/ProfileCard";
-import {$authUserStore} from "@/state-management/auth";
+import {$authUserStore, deauthenticateUser} from "@/state-management/auth";
 import {Button} from "@/components/Button/Button";
 import {PassageTickets} from "@/components/PassageTickets/PassageTickets";
 
@@ -18,7 +18,11 @@ export const Account: FC = () => {
             <Container className={classes["account-content"]}>
                 <div className={classes["left-column"]}>
                     <ProfileCard user={authUser!} />
-                    <Button type="button" className={classes["quit-button"]}>
+                    <Button
+                        type="button"
+                        className={classes["quit-button"]}
+                        onClick={() => deauthenticateUser()}
+                    >
                         Выйти
                     </Button>
                 </div>
