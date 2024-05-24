@@ -107,3 +107,51 @@ END //
 
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE GetPassagesByUserId(IN userId INT)
+BEGIN
+SELECT p.passage_id,
+       pt.passage_time_id,
+       pt.entry_time,
+       p.passage_date,
+       ps.passage_status_id,
+       ps.passage_status_name,
+       ps.color
+FROM passage p
+         JOIN passage_time pt ON p.passage_time_id = pt.passage_time_id
+         JOIN passage_status ps ON p.passage_status_id = ps.passage_status_id
+WHERE p.user_id = userId;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE SearchPassages(searchQuery VARCHAR(255))
+BEGIN
+SELECT
+    p.passage_id AS id,
+    p.passage_date AS date,
+        pt.passage_time_id AS passageTimeId,
+        pt.entry_time AS entryTime,
+        ps.passage_status_id,
+        ps.color,
+        ps.passage_status_name,
+        u.user_id AS userId,
+        u.email,
+        u.first_name AS firstName,
+        u.last_name AS lastName,
+        u.middle_name AS middleName
+FROM passage p
+    JOIN user u ON p.user_id = u.user_id
+    JOIN passage_time pt ON p.passage_time_id = pt.passage_time_id
+    LEFT JOIN passage_status ps ON p.passage_status_id = ps.passage_status_id
+WHERE u.email LIKE CONCAT('%', searchQuery, '%')
+   OR u.last_name LIKE CONCAT('%', searchQuery, '%')
+   OR u.first_name LIKE CONCAT('%', searchQuery, '%')
+   OR u.middle_name LIKE CONCAT('%', searchQuery, '%')
+ORDER BY p.passage_date DESC;
+END //
+
+DELIMITER ;

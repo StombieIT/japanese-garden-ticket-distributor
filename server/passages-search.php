@@ -29,21 +29,8 @@
 
     try {
         // SQL запрос с условием фильтрации для поиска по email, last name, first name и middle name
-        $query = $pdo->prepare("
-            SELECT p.passage_id AS id, p.passage_date AS date, pt.passage_time_id AS passageTimeId, pt.entry_time AS entryTime,
-                   ps.passage_status_id, ps.color, ps.passage_status_name, u.user_id AS userId, u.email, u.first_name AS firstName,
-                   u.last_name AS lastName, u.middle_name AS middleName
-            FROM passage p
-            JOIN user u ON p.user_id = u.user_id
-            JOIN passage_time pt ON p.passage_time_id = pt.passage_time_id
-            LEFT JOIN passage_status ps ON p.passage_status_id = ps.passage_status_id
-            WHERE u.email LIKE :searchQuery 
-            OR u.last_name LIKE :searchQuery
-            OR u.first_name LIKE :searchQuery
-            OR u.middle_name LIKE :searchQuery
-            ORDER BY p.passage_date DESC
-        ");
-        $query->execute(['searchQuery' => '%' . $searchQuery . '%']);
+        $query = $pdo->prepare("CALL SearchPassages(:search_query)");
+        $query->execute([':search_query' => $searchQuery]);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
 
         // Преобразование результатов для соответствия TypeScript интерфейсу IPassageExtended
