@@ -16,7 +16,7 @@
     try {
         $passagesQuery = $pdo->prepare("
             SELECT p.passage_id, pt.passage_time_id, pt.entry_time, p.passage_date, ps.passage_status_id,
-                   ps.passage_status_name
+                   ps.passage_status_name, ps.color
             FROM passage p
             JOIN passage_time pt ON p.passage_time_id = pt.passage_time_id
             JOIN passage_status ps ON p.passage_status_id = ps.passage_status_id
@@ -38,7 +38,8 @@
                 'date' => $passage['passage_date'],
                 'status' => [
                     'id' => $passage['passage_status_id'],
-                    'name' => $passage['passage_status_name']
+                    'name' => $passage['passage_status_name'],
+                    'color' => $passage['color']
                 ]
             ];
         }

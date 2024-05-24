@@ -31,7 +31,7 @@
         // SQL запрос с условием фильтрации для поиска по email, last name, first name и middle name
         $query = $pdo->prepare("
             SELECT p.passage_id AS id, p.passage_date AS date, pt.passage_time_id AS passageTimeId, pt.entry_time AS entryTime,
-                   ps.passage_status_id, ps.passage_status_name, u.user_id AS userId, u.email, u.first_name AS firstName,
+                   ps.passage_status_id, ps.color, ps.passage_status_name, u.user_id AS userId, u.email, u.first_name AS firstName,
                    u.last_name AS lastName, u.middle_name AS middleName
             FROM passage p
             JOIN user u ON p.user_id = u.user_id
@@ -58,6 +58,7 @@
                 "status" => [
                     "id" => $row["passage_status_id"],
                     "name" => $row["passage_status_name"],
+                    "color" => $row["color"]
                 ],
                 "user" => [
                     "id" => (int)$row["userId"],
