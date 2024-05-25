@@ -5,6 +5,8 @@ import {createPassage as createPassageRequest, ICreatePassageParams} from "@/sta
 import {createNotification} from "@/utils/notification";
 import {NotificationType} from "@/models/notification";
 import {$date, $selectedTimeId} from "@/state-management/passage-form";
+import {submitEdited} from "@/state-management/passage";
+import {removePassageById} from "@/state-management/passages";
 
 sample({
     source: register.done,
@@ -43,7 +45,7 @@ sample({
         text: "Вы успешно создали заявку!"
     }),
     target: appendNotification,
-})
+});
 
 sample({
     source: createPassageRequest.fail,
@@ -52,4 +54,40 @@ sample({
         text: "Не удалось создать заявку :("
     }),
     target: appendNotification,
-})
+});
+
+sample({
+    source: submitEdited.done,
+    fn: () => createNotification({
+        type: NotificationType.SUCCESS,
+        text: "Вы успешно данные о билете!"
+    }),
+    target: appendNotification
+});
+
+sample({
+    source: submitEdited.fail,
+    fn: () => createNotification({
+        type: NotificationType.ERROR,
+        text: "Не удалось изменить данные о билете ;("
+    }),
+    target: appendNotification
+});
+
+sample({
+    source: removePassageById.done,
+    fn: () => createNotification({
+        type: NotificationType.SUCCESS,
+        text: "Билет успешно удалён"
+    }),
+    target: appendNotification
+});
+
+sample({
+    source: removePassageById.fail,
+    fn: () => createNotification({
+        type: NotificationType.ERROR,
+        text: "Не удалось удалить билет ;("
+    }),
+    target: appendNotification
+});
